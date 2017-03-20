@@ -1,3 +1,6 @@
+# windows
+*.rar
+
 # C++ objects and libs
 
 *.slo
