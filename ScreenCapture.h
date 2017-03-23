@@ -2,25 +2,11 @@
 #define SCREENCAPTURE_H
 
 #include <QWidget>
+#include <memory>
 
 #include "SelectRect.h"
 
-/*!
- * \brief The CaptureControl class
- */
-//class QPushButton;
-//class CaptureControl : public QWidget
-//{
-//    Q_OBJECT
-//public:
-//    explicit CaptureControl(QWidget *parent = 0);
-
-//    void savePix();
-
-//private:
-//    QPushButton *m_cancel;
-//    QPushButton *m_sure;
-//};
+class Toolbar;
 
 class ScreenCapture : public QWidget
 {
@@ -28,7 +14,7 @@ class ScreenCapture : public QWidget
 public:
     explicit ScreenCapture(QWidget *parent = 0);
     void setTarget(QPixmap && pix);
-    QPixmap&& seletedPix();
+    QPixmap seletedPix();
 
 signals:
 
@@ -41,6 +27,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *) override;
     void keyPressEvent(QKeyEvent *event) override;
 private:
+    Toolbar* m_toolbar;
 
     QPixmap m_bk;// background image
     QPixmap m_sourceBk;
@@ -59,6 +46,8 @@ private:
     QPoint m_pStart;
     QPoint m_pMove;
     QPoint m_pEnd;
+
+    void showToolBar();
 
 };
 

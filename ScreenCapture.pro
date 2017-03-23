@@ -15,9 +15,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     ScreenCapture.cpp \
-    SelectRect.cpp
+    SelectRect.cpp \
+	Toolbar.cpp
 
 HEADERS += \
     ScreenCapture.h \
-    SelectRect.h
+    SelectRect.h \
+	Toolbar.h
+
 

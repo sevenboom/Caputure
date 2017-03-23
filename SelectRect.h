@@ -8,23 +8,24 @@ class SelectRect : public QRect
 {
 public:
     enum Orientation{
-        None = 0x0000,
-        Top =    0x0001,
-        Right =  0x0002,
-        Left =   0x0004,
-        Bottom = 0x0008,
-        RightTop = Top|Right,
-        LeftTop = Left|Top,
-        RightBottom = Right|Bottom,
-        LeftBottom = Left|Bottom
+        None = -1,
+        LeftTop =  0,
+        Top     =  1,
+        RightTop = 2,
+        Right,
+        RightBottom,
+        Bottom,
+        LeftBottom,
+        Left
     };
+
     SelectRect();
     explicit SelectRect(const QRect &parentRect);
     explicit operator QRect() const;
     ~SelectRect() = default;
 
-    void drawSelectFrame(QPainter &paint);
-    Orientation checkOrientation(const QPoint& point);
+    void drawSelectBorder(QPainter &paint);
+    Orientation checkOrientation(const QPoint& point, QPoint &extraPoint = QPoint());
     Qt::CursorShape cursorShape(const QPoint &point);
 
     void moveRect(const QPoint& movePos);
@@ -34,6 +35,8 @@ public:
     void setParentRect(const QRect &parentRect);
 
     void setOrient(const Orientation &orient);
+
+    QRect absoluteRect();
 
 private:
     void growRect(const QPoint &pSource, const QPoint &resizeVector);
