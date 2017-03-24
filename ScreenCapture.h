@@ -26,6 +26,11 @@ protected:
     void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void keyPressEvent(QKeyEvent *event) override;
+
+private slots:
+    void capture();
+    void reset();
+
 private:
     Toolbar* m_toolbar;
 

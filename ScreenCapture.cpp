@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QHBoxLayout>
+#include <QClipboard>
 
 ScreenCapture::ScreenCapture(QWidget *parent) : QWidget(parent),
   m_selectRect(this->rect())
@@ -26,6 +27,9 @@ ScreenCapture::ScreenCapture(QWidget *parent) : QWidget(parent),
     m_toolbar =new Toolbar(this);
     m_toolbar->setMaximumSize(120,50);
     m_toolbar->hide();
+
+    connect(m_toolbar,&Toolbar::sure, this, &ScreenCapture::capture);
+    connect(m_toolbar, &Toolbar::cancel, qApp, &QApplication::quit);
 }
 
 void ScreenCapture::setTarget(QPixmap &&pix)
@@ -89,7 +93,6 @@ void ScreenCapture::mousePressEvent(QMouseEvent *e)
     }
 }
 
-
 void ScreenCapture::mouseMoveEvent(QMouseEvent *e)
 {
     if(m_isPressed){
@@ -147,6 +150,15 @@ void ScreenCapture::keyPressEvent(QKeyEvent *event)
     }
 }
 
+void ScreenCapture::capture()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setPixmap(m_sourceBk.copy(m_selectRect));
+
+    qApp->quit();
+}
+
+
 void ScreenCapture::showToolBar()
 {
     const QRect& rect = m_selectRect.absoluteRect();
@@ -165,5 +177,5 @@ void ScreenCapture::showToolBar()
     m_toolbar->show();
     m_toolbar->raise();
 
-    qDebug() << m_toolbar->geometry() << m_toolbar->isVisible();
+//    qDebug() << m_toolbar->geometry() << m_toolbar->isVisible();
 }
