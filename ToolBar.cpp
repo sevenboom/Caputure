@@ -1,4 +1,4 @@
-#include "ToolBar.h"
+#include "Toolbar.h"
 #include <QHBoxLayout>
 #include <QPushButton>
 
