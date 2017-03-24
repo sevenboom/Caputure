@@ -82,7 +82,7 @@ void ScreenCapture::mousePressEvent(QMouseEvent *e)
         if(orient != SelectRect::None){
             m_action = Resize;
             m_selectRect.setOrient(orient);
-            // ÅÐ¶ÏÊµ¼Ê¾«È·µãÊÇ²»ÊÇÊó±êµÄµã£¬²»ÊÇÔòÐèÒª¸Ä±äÑ¡¿òµÄ´óÐ¡£¬Ê¹Êó±êÔÚÑ¡¿ò¾«È·µÄ·½Î»µãÉÏ
+            // åˆ¤æ–­å®žé™…ç²¾ç¡®ç‚¹æ˜¯ä¸æ˜¯é¼ æ ‡çš„ç‚¹ï¼Œä¸æ˜¯åˆ™éœ€è¦æ”¹å˜é€‰æ¡†çš„å¤§å°ï¼Œä½¿é¼ æ ‡åœ¨é€‰æ¡†ç²¾ç¡®çš„æ–¹ä½ç‚¹ä¸Š
             if(!extraPoint.isNull()){
                 m_selectRect.resizeRect(extraPoint,e->globalPos()-extraPoint);
                 update();
