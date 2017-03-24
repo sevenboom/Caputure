@@ -29,7 +29,6 @@ protected:
 
 private slots:
     void capture();
-    void reset();
 
 private:
     Toolbar* m_toolbar;
